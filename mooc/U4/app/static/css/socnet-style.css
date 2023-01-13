@@ -1,0 +1,45 @@
+/*my-socnet-style.css */
+/* Own stylesheet for SocNet */
+#container {
+    font-family: Helvetica, Geneva, Arial, sans-serif;
+    padding-left: 20px; /* mover texto desde la izquierda*/
+    background-color: #FFFFFF; /* beige */
+    font-color: #2A2929; /* dark grey */
+    margin: 10px; /* mete margen en todos los lados a no ser que especifiques lado*/
+}
+a:link{
+    font-size: 120%;
+    text-decoration: none; /*para poner negrita, subrayado, etc. Viva el pinta y colorea*/
+ }
+
+a:hover {
+    font-color: #cd7f32; /* light bronze */
+}
+h1 {
+
+    font-color: #d69544; /* bonze */
+    font-size: 200%;
+    margin: 20px;
+}
+form {
+    border: 2px solid #d69544 ; /* bonze */
+    border-radius: 10px;  /* Borde radial, se puede especificar muchas cositas https://www.aprenderaprogramar.com/index.php?option=com_content&view=article&id=763:efecto-css-esquinas-redondeadas-border-radius-border-left-top-radius-ejemplos-circulo-o-elipse-cu01058d&catid=75&Itemid=203 */
+    Overflow: hidden; /*si las barras de scroll rebasan el cuadro, no aparecen */
+    margin: 5px;
+    font-size: 120%;
+}
+label {
+    font-size: 110%;
+    padding: 5px;
+    text-align: left;
+    margin: 5px;
+
+
+}
+.inputs {
+
+    padding: 5px;
+    text-align: left;
+    margin: 5px;
+
+}
