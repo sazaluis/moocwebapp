@@ -1,0 +1,11 @@
+{
+  "user_name": "Micartusino",
+  "password": "Aguachoure",
+  "messages" : [
+    { "message number" : "61", "text" : "hola q ase" },
+    { "message number" : "62", "text" : "son onshe con oshenta"},
+    { "message number" : "63", "text" : "helado de tre bola" }
+  ],
+  "email": "micartusino@wea.jorl",
+  "friends": ["bond007@wea.jorl"]
+}
