@@ -165,30 +165,45 @@ def create_user_file(name, email, passwd, passwd_confirmation):
     session['email'] = email
     return redirect(url_for("home"))
 
-@app.route('/readuserfriends', methods=['GET', 'POST'])
-def readuserfriends():
+@app.route('/showmessages', methods=['GET', 'POST'])
+def showmessages():
     """with open("micartusino.json", 'r') as f:
         data = json.load(f)"""
     if request.method == 'POST':
-        email = request.form.get('email', None)+".json"
+
+        showmessages = []
+        data = readuserdata()
+        for users in data["friends"]:
+
+            readusermessages(messages)
+
+        return render_template('returnuserdata.html', inputs=showmessages, next=readuserdata)
+    return app.send_static_file('readuserdata.html')
+
+def readuserdata():
+
+        email = request.form.get('email', None) + ".json"
         if email is None or email == '':
             missing.append(email)
         SITE_ROOT = os.path.abspath(os.path.dirname("server4.py"))
         file_path = os.path.join(SITE_ROOT, "data/", email)
         if not os.path.isfile(file_path):
-            return process_error("User not found / No existe un usuario con ese nombre","readuserfriends")
+            return process_error("User not found / No existe un usuario con ese nombre", "readuserfriends")
         with open(file_path, 'r') as f:
-            data = json.load(f)
-        showmessages = []
+            datos = json.load(f)
+        return datos
+
+def readusermessages(data):
+
         for index,entries in enumerate(data["messages"]):
             showmessages.append(entries['text'])
 
-        return render_template('returnusers.html', inputs=showmessages, next=readuserfriends)
 
-    """otra forma de hacerlo es en vez de hacer el for, y declarar show messages, pasar al HTML data["messages"] y recorrer la lista en el HTML"""
-    """return render_template('returnusers.html', inputs=data["messages"], next=readuserfriends)   --> GGWP """
 
-    return app.send_static_file('readuserfriends.html')
+"""otra forma de hacerlo es en vez de hacer el for, y declarar show messages, pasar al HTML data["messages"] y recorrer la lista en el HTML"""
+"""return render_template('returnusers.html', inputs=data["messages"], next=readuserfriends)   --> GGWP """
+
+
 
 
 # start the server with the 'run()' method
