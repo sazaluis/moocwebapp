@@ -5,12 +5,12 @@ import sys
 from flask import Flask, render_template
 
 app = Flask(__name__)
-from flask import request
+from flask import request,url_for,redirect
 from flask import Flask, session
 from datetime import datetime
 import json
 import os
-
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 # CODIGO PARA RENDER DE ERRORES
 def process_error(message, next_page):
     """
@@ -104,7 +104,9 @@ def load_user(email, passwd):
     :param passwd: password to check in order to validate the user
     :return: content of the home page (app basic page) if user exists and password is correct
     """
+    SITE_ROOT = os.path.abspath(os.path.dirname("server4.py"))
     file_path = os.path.join(SITE_ROOT, "data/", email)
+    file_path = file_path+".json"
     if not os.path.isfile(file_path):
         return process_error("User not found / No existe un usuario con ese nombre", url_for("login"))
     with open(file_path, 'r') as f:
@@ -172,18 +174,23 @@ def showmessages():
     if request.method == 'POST':
 
         showmessages = []
-        userdata = readuserdata()
+        """ userdata = readuserdata()
 
         friends = userdata.get("friends")
-        for i,v in enumerate(friends):
-            email = v(i)
+        """
+        friends = session['friends']
+        for email in friends:
             frienddata = readuserdata()
-            var = data.get("messages")
+            ret_message = frienddata.get("messages")
+
+            datos[frienddata['user_name']] = {}
+            datos[frienddata['user_name']]['messages'] = frienddata['messages']
+
         return render_template('returnuserdata.html', inputs=showmessages, next=readuserdata)
     return app.send_static_file('readuserdata.html')
 
 def readuserdata():
-
+        datos={}
         email = request.form.get('email', None) + ".json"
         if email is None or email == '':
             missing.append(email)
@@ -192,21 +199,28 @@ def readuserdata():
         if not os.path.isfile(file_path):
             return process_error("User not found / No existe un usuario con ese nombre", "readuserfriends")
         with open(file_path, 'r') as f:
-            datos = json.load(f)
+            datos= json.load(f)
         return datos
 
-def readusermessages(data):
+def get_friends_messages_with_authors():
+    """buscará los amigos del usuario actual (pista: deberían estar guardados en la sesión) y para cada uno de ellos cargará
+    el fichero correspondiente donde se guardan sus mensajes. La función debe retornar una lista de tuplas, cada una
+    representando un mensaje de la forma (user, time_stamp, message).
 
-        for index,entries in enumerate(data["messages"]):
-            showmessages.append(entries['text'])
+    Recomendación: para facilitar el desarrollo de un código más fácil de entender y mantener, te recomiendo que uses 2
+     funciones: la primera que cargue la lista de amigos desde la sesión y, para cada uno de ellos, la segunda función
+      cargue el fichero correspondiente.
+    """
 
 
 
-"""otra forma de hacerlo es en vez de hacer el for, y declarar show messages, pasar al HTML data["messages"] y recorrer la lista en el HTML"""
-"""return render_template('returnusers.html', inputs=data["messages"], next=readuserfriends)   --> GGWP """
+    get_messages_from_users()
 
+def load_session_user_friends():
+    session['friends']
 
-
+def get_messages_from_users():
+    a = a + 1
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
