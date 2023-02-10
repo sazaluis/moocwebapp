@@ -169,26 +169,23 @@ def create_user_file(name, email, passwd, passwd_confirmation):
 
 @app.route('/showmessages', methods=['GET', 'POST'])
 def showmessages():
-    """with open("micartusino.json", 'r') as f:
-        data = json.load(f)"""
+    datos={}
     if request.method == 'POST':
 
-        showmessages = []
-        """ userdata = readuserdata()
+        if session:
+            friends = session['friends']
+            for email in friends:
+                frienddata = readuserdata()
+                ret_message = frienddata.get("messages")
 
-        friends = userdata.get("friends")
-        """
-        friends = session['friends']
-        for email in friends:
-            frienddata = readuserdata()
-            ret_message = frienddata.get("messages")
+                datos[frienddata['user_name']] = {}
+                datos[frienddata['user_name']]['messages'] = frienddata['messages']
 
-            datos[frienddata['user_name']] = {}
-            datos[frienddata['user_name']]['messages'] = frienddata['messages']
+        else:
+            return process_error("Tienes que loguearte primero", url_for("login"))
 
-        return render_template('returnuserdata.html', inputs=showmessages, next=readuserdata)
+        return render_template('returnuserdata.html', inputs=datos, next=readuserdata)
     return app.send_static_file('readuserdata.html')
-
 def readuserdata():
         datos={}
         email = request.form.get('email', None) + ".json"

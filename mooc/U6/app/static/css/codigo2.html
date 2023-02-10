@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <script>
+        var cargada = false;
+        var procesarDiv = true;
+        var procesarFocus = true;
+      //  alert(document.documentElement.outerHTML) //muestra el codigo del HTML entero
+      //  alert(document.head.outerHTML)   //muestra el codigo del head
+      //  alert(document.body.outerHTML)   //muestra el codigo del body
+        if(! cargada) alert("La página aún no ha cargado");
+
+        function mostrarEvento(evento) {
+            if(cargada) alert("Se ha producido el evento: " + evento);
+        }
+        function procesarClick() {
+            if(procesarDiv) {
+                procesarDiv = false
+                mostrarEvento('click');
+            }
+        }
+        function procesarInput() {
+            if(procesarFocus) {
+                procesarFocus = false
+                mostrarEvento('focus');
+            }
+        }
+    </script>
+</head>
+
+<body onload="alert('Documento Cargado');cargada=true;alert(document.head.outerHTML);alert(document.body.outerHTML)">
+
+    Ejemplo sencillo de uso de eventos
+    <div style="background-color: red;"
+         onmouseover="if(procesarDiv) mostrarEvento('mouseover')"
+         onclick="procesarClick()">
+
+         Eventos de raton
+         <input type="text" value="cambiar"
+                onfocus="procesarInput()"
+                onkeypress="alert(this.value);this.value = this.value.toUpperCase()"/>
+    </div>
+</body>
+</html>

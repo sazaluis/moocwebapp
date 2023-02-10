@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+
+    <script>
+        var a = 3;
+        var b = 5;
+        var resultado = null;
+
+        function mostrarVariable(valor) {
+            alert(valor);   // Aquí mostramos el valor que recibe como parámetro
+        }
+        function sumarVariables(valor1,valor2) {
+            resultado=valor1+valor2;
+        }
+    </script>
+</head>
+<body>
+    Pulsa para ver el primer termino
+        <input type="button" value="T1"  onclick="mostrarVariable(a)"/>
+    <br>
+    Pulsa para ver el segundo termino
+        <input type="button" value="T2"  onclick="mostrarVariable(b)"/>
+    <br>
+    Pulsa para sumar
+        <input type="button" value="Sumar" onclick="sumarVariables(a,b)"/>
+    <br>
+    Pulsa para ver el resultado de la suma
+        <input type="button" value="T1+T2" onclick="mostrarVariable(resultado)"/>
+</body>
+</html>
