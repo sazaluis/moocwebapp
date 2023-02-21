@@ -13,6 +13,33 @@
     <title>
         Home - SocNet
     </title>
+    
+    <script src = "../static/js/validateEditProfile.js"></script>
+
+    <!-- <script>
+        
+    function mostrarAmigos() {
+        var amigos = ""
+        // Como es una lista, una coleccion de datos tipo HTMLOptionsCollection, hay que obtener la lista de HTMLOptionElement y luego recorrela 
+        var opciones = document.getElementById('friends').options
+        for(var i = 0; i < opciones.length; i++) {
+            // revisamos si el HTMLOptionElement contiene datos, y si es asi, asignamos el valor del elemento
+            if(opciones[i].selected) amigos += opciones[i].value
+        }
+        alert((amigos == "") ? "Sin amigos" : "Amigos: " + amigos)
+    }
+    function validarDosAmigos(){
+        // funcion que valida el numero de amigos seleccionados, solo pueden ser 2 seleccionados, si son mas o menos, mostramos mensaje de error
+         var amigos = 0
+         var opciones = document.getElementById('friends').options
+         for(var i = 0; i < opciones.length; i++) {
+             if(opciones[i].selected)
+                 amigos++
+         }
+         if(amigos!==2) alert("Alerta: Selecciona solo dos amigos")
+     }
+    </script> -->
+    
 </head>
 <body>
 <div id="container">
@@ -32,7 +59,7 @@
         Hi, How are you?
     </h1>
     <div>
-        <form action="/profile" method="post" name="profile">
+        <form action="/profile" method="post" name="profile" onsubmit="return validateEditProfile(this)">
             <label for="nickname">
                 Nickname
             </label>
@@ -50,10 +77,10 @@
                 Friends (Hold down the Ctrl (windows) / Command (Mac) button to select multiple options)
             </label>
             <div class="inputs">
-                <select name="friends" size="5" multiple>
+                <select id="friends" name="friends" size="5" multiple>
                     {% for option in all_users %}
                     <option value="{{ option }} " {% if option in friends %} selected {% endif %}>{{ option }} </option>
-                    {% endfor %}
+                    {% endfor %}                    
                 </select>
             </div>
             <label for="passwd">

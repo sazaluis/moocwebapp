@@ -6,8 +6,22 @@
         <title>
             Sign Up - SocNet
         </title>
+        <script src = "static/js/validateProfile.js"></script>
+        <script>   
+
+            // function mostrarAtributoValue() {
+            //     var boton = document.getElementById("signup_submit");
+            //     alert(boton.value);
+            // }
+            function myFunction(){
+                var element = document.getElementById("nickname");
+                alert(element.value);
+
+            }
+        </script>
     </head>
-    <body>
+    <!-- <body  onload="alert(document.getElementById('signup_submit').value)"> -->
+        <body >
         <div id="container">
              <a href="/">
                 SocNet
@@ -19,12 +33,14 @@
             <h1>
                 Sign Up
             </h1>
-            <form action="signup" method="post" name="signup">
+            <form action="signup" method="post" name="signup" onsubmit="return validateProfile(this)">
                 <label for="nickname">
                         Nickname
                 </label>
-				<div class="inputs">
-                    <input id="nickname" maxlength="64" name="nickname" placeholder="Nickname" size="80" type="text" value=""/>
+				<div class="inputs" >
+                    <!-- <input id="nickname" maxlength="64" name="nickname" placeholder="Nickname" size="80" type="text" value="" onBlur="alert(this.value)"/> -->
+                    <!-- <input id="nickname" maxlength="64" name="nickname" placeholder="Nickname" size="80" type="text" value="" onBlur="myFunction()"/> -->
+                    <input id="nickname" maxlength="64" name="nickname" placeholder="Nickname" size="80" type="text" value="" /> 
                 </div>
                  <label for="email">
                         Email

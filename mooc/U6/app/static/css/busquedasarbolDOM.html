@@ -8,6 +8,70 @@
                     alert(document.getElementById(id).outerHTML);
                 }
                 catch (error) {
+                    alert(error);
+                    console.error(error);
+                }
+            }
+            function callButtonByName(id) {
+                try {
+                    // Obtener todos los elementos con name=t8
+		            var elementos = document.getElementsByName(id);
+                    if (elementos.length > 0) {
+		                // Recorrer los elementos y hacer algo con ellos
+		                for (var i = 0; i < elementos.length; i++) {
+			    
+			            alert(elementos[i].textContent);
+                        // Por ejemplo, mostrar el texto de cada elemento en la consola
+                        }
+                    }
+                    else{
+                        alert("Error: No hay elementos con nombre \""+id +"\"");
+                    }
+                }
+                catch(error) {
+                    alert(error);
+                    console.error(error);
+                }
+            }
+            function callButtonByTag(id) {
+                try {
+                    // Obtener todos los elementos con name=t8
+		            var elementos = document.getElementsByTagName(id);  
+                    if (elementos.length > 0) {
+		                // Recorrer los elementos y hacer algo con ellos
+		                for (var i = 0; i < elementos.length; i++) {
+			    
+			            alert(elementos[i].textContent);
+                        // Por ejemplo, mostrar el texto de cada elemento en la consola
+                        }
+                    }
+                    else{
+                        alert("Error: No hay elementos con nombre \""+id +"\"");
+                    }
+                }
+                catch(error) {
+                    alert(error);
+                    console.error(error);
+                }
+            }
+            function callButtonByClass(id) {
+                try {
+                    // Obtener todos los elementos con name=t8
+		            var elementos = document.getElementsByClassName (id);
+                    if (elementos.length > 0) {
+		                // Recorrer los elementos y hacer algo con ellos
+		                for (var i = 0; i < elementos.length; i++) {
+			    
+			            alert(elementos[i].textContent);
+                        // Por ejemplo, mostrar el texto de cada elemento en la consola
+                        }
+                    }
+                    else{
+                        alert("Error: No hay elementos con nombre \""+id +"\"");
+                    }
+                }
+                catch(error) {
+                    alert(error);
                     console.error(error);
                 }
             }
@@ -50,9 +114,24 @@
                 </div>
             </div>
             <div>
-            <button type="button" onclick="callButton('t1_2')">Click Me!</button>
+                <button type="button" onclick="callButton('t1_2')">Click Me!</button>
 
-            <button type="button" onclick="callButton('no_valido')">Click Me!</button>
+                <button type="button" onclick="callButton('no_valido')">Click Me!</button>
+
+                <button type="button" onclick="callButton('contenedor')">Click Me!</button>
+
+                <button type="button" onclick="callButtonByName('t8')">Click Me!</button>
+
+                <button type="button" onclick="callButtonByName('t7')">Click Me!</button>
+
+                <button type="button" onclick="callButtonByName('no_valido')">Click Me!</button>
+
+                <button type="button" onclick="callButtonByTag('head')">Click Me!</button>
+
+                <button type="button" onclick="callButtonByTag('div')">Click Me!</button>
+
+                <button type="button" onclick="callButtonByClass('impar')">Click Me!</button>
+                
             </div>
         </div>
     </body>
