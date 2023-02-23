@@ -6,6 +6,7 @@
     <title>
         Home - SocNet
     </title>
+    <script src = "../static/js/validateHome.js"></script>
 </head>
 <body>
 <div id="container">
@@ -26,7 +27,7 @@
     </h1>
     <div>
         <div id="left">
-            <form action="home" method="post" name="post">
+            <form action="home" method="post" name="post" onSubmit= "return validateHome(this)">
                 <label for="post">
                     Say something:
                 </label>
