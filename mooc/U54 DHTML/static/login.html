@@ -6,6 +6,7 @@
         <title>
             Log In - SocNet
         </title>
+        <script src = "../static/js/validateLogin.js"></script>
     </head>
     <body>
         <div id="container">
@@ -19,7 +20,7 @@
             <h1>
                 Log In
             </h1>
-            <form action="login" method="post" name="login">
+            <form action="login" method="post" name="login" onsubmit="return validateLogin(this)">
                 <label for="email">
                         Email
                  </label>

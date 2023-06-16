@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link href="static/css/my-socnet-style.css" rel="stylesheet" type="text/css"/>
+    <title>
+        Home - SocNet
+    </title>
+    
+    <script src = "../static/js/validateEditProfile.js"></script>
+
+    <!-- <script>
+        
+    function mostrarAmigos() {
+        var amigos = ""
+        // Como es una lista, una coleccion de datos tipo HTMLOptionsCollection, hay que obtener la lista de HTMLOptionElement y luego recorrela 
+        var opciones = document.getElementById('friends').options
+        for(var i = 0; i < opciones.length; i++) {
+            // revisamos si el HTMLOptionElement contiene datos, y si es asi, asignamos el valor del elemento
+            if(opciones[i].selected) amigos += opciones[i].value
+        }
+        alert((amigos == "") ? "Sin amigos" : "Amigos: " + amigos)
+    }
+    function validarDosAmigos(){
+        // funcion que valida el numero de amigos seleccionados, solo pueden ser 2 seleccionados, si son mas o menos, mostramos mensaje de error
+         var amigos = 0
+         var opciones = document.getElementById('friends').options
+         for(var i = 0; i < opciones.length; i++) {
+             if(opciones[i].selected)
+                 amigos++
+         }
+         if(amigos!==2) alert("Alerta: Selecciona solo dos amigos")
+     }
+    </script> -->
+    
+</head>
+<body>
+<div id="container">
+    <a href="/">
+        SocNet
+    </a>
+    |
+    <a href="/home">
+        Home
+    </a>
+    |
+    <a href="logout">
+        Log Out ({{ nickname }})
+    </a>
+
+    <h1>
+        Hi, How are you?
+    </h1>
+    <div>
+        <form action="/profile" method="post" name="profile" onsubmit="return validateEditProfile(this)">
+            <label for="nickname">
+                Nickname
+            </label>
+            <div class="inputs">
+                <input id="nickname" maxlength="64" name="nickname" placeholder="Nickname" size="80" type="text"
+                       value="{{ nickname }}"/>
+            </div>
+            <label for="email">
+                Email
+            </label>
+            <div class="inputs">
+                <input id="email" name="email" placeholder="Email" size="80" type="text" value="{{ email }}" readonly/>
+            </div>
+            <label for="Friends">
+                Friends (Hold down the Ctrl (windows) / Command (Mac) button to select multiple options)
+            </label>
+            <div class="inputs">
+                <select id="friends" name="friends" size="5" multiple>
+                    {% for option in all_users %}
+                    <option value="{{ option }} " {% if option in friends %} selected {% endif %}>{{ option }} </option>
+                    {% endfor %}                    
+                </select>
+            </div>
+            <label for="passwd">
+                New Password
+            </label>
+            <div class="inputs">
+                <input id="passwd" name="passwd" placeholder="Password" size="80" type="password" value="{{ passwd }}"/>
+            </div>
+            <label for="confirm">
+                Repeat Password
+                <div class="inputs">
+                    <input id="confirm" name="confirm" placeholder="Repeat Password" size="80" type="password"
+                           value="{{ passwd }}"/>
+                </div>
+                <div class="inputs">
+                    <input id="accept_submit" name="accept_submit" type="submit" value="Accept"/>
+                </div>
+            </label>
+        </form>
+    </div>
+</div>
+</body>
+</html>
